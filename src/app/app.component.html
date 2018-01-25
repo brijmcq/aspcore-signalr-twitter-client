@@ -1,0 +1,79 @@
+<section id="main-container" fxLayout="column" fxLayoutAlign="start stretch">
+  <mat-toolbar color="primary">
+    Tweet To Map
+  </mat-toolbar>
+  <mat-sidenav-container fxFlex>
+    <mat-sidenav mode="side" align="end" opened class="mat-elevation-z6" #sidenav>
+     <div>
+        <h1>Tweets</h1>
+        <span *ngIf="isConnected; else other">
+            🙂
+        </span>
+        <ng-template #other>
+            😞
+        </ng-template>
+     </div>
+    
+
+      <div class="container" *ngIf="tweets.length > 0">
+        <!-- add a reverse pipe so that the first item is the latest -->
+        <mat-card *ngFor="let tweet of tweets?.reverse()" fxLayout="column">
+          <div>
+            <label>Title</label> <h4>{{tweet.title}}</h4>
+          </div>
+          <div>
+            <label>Url </label> <span><a [href]=tweet.url> {{tweet.url}}</a></span>
+          </div>
+       
+          <mat-checkbox [(ngModel)]="tweet.isCheck">Show </mat-checkbox>
+        </mat-card>
+      </div>
+
+    </mat-sidenav>
+
+    <div class="container" fxLayoutAlign="center center">
+     
+      <!-- [zoom]="zoom" -->
+      <!-- [disableDefaultUI]="false" -->
+      <!-- (mapClick)="mapClicked($event)" -->
+<agm-map  style="width:100%; height:100%;"
+[latitude]="lat"
+[longitude]="lng"
+[zoom]="12"
+[zoomControl]="false"
+>
+<ng-container   *ngFor="let tweet of tweets; let i = index">
+
+    <agm-marker *ngIf="tweet.isCheck"
+  
+    [latitude]="tweet.lat"
+    [longitude]="tweet.lng"
+    [markerDraggable]="false"
+    >
+    
+  <agm-info-window>
+    <strong>{{tweet.title}}</strong>
+  </agm-info-window>
+  
+</agm-marker>
+
+
+</ng-container>
+
+<agm-circle [latitude]="lat + 0.3" [longitude]="lng" 
+    [radius]="5000"
+    [fillColor]="'red'"
+    [circleDraggable]="true"
+    [editable]="true">
+</agm-circle>
+
+</agm-map>
+
+    </div>
+
+ 
+
+
+  </mat-sidenav-container>
+
+</section>

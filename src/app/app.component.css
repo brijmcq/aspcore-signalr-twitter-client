@@ -1,0 +1,23 @@
+
+
+mat-sidenav{
+    width: 40vw;
+}
+
+#main-container{
+    height:100vh;
+}
+
+h1{
+    padding-top : 1em;
+    padding-left: 1em;
+    display: inline-block;
+}
+mat-card{
+    margin:5px;
+}
+
+.container{
+    height:100%;
+    width:100%;
+}
