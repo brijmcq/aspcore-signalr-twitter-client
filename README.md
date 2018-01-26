@@ -1,4 +1,10 @@
-# Sandbox
+# Client app using Angular to display the incoming tweets to google map. Server-side repo is  [here](https://github.com/brijmcq/aspcore-signalr-twitter)
+
+![alt tag](./ac2-gettingtweets.PNG "server-side")
+![alt tag](./ac3-client.PNG "client-side")
+
+
+# TweetMap
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.3.
 
